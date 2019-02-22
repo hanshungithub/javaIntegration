@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<package name="cn.hassan.site"/>
+	</typeAliases>
+
+    <!--自定义转换器 配置xml使用-->
+    <typeHandlers>
+        <typeHandler handler="cn.hassan.site.common.handle.ArticleTypeHandler" javaType="cn.hassan.site.mvc.enums.ArticleTypeEnum"/>
+    </typeHandlers>
+	
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!--分页参数合理化  -->
+			<property name="reasonable" value="true"/>
+		</plugin>
+	</plugins>
+
+</configuration>
+

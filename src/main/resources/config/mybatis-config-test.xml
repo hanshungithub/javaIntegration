@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="config/dbconfig.properties"/>
+
+    <!-- "_______________________________________________" -->
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<package name="cn.hassan.site"/>
+	</typeAliases>
+
+    <!--自定义转换器 配置xml使用-->
+    <typeHandlers>
+        <typeHandler handler="cn.hassan.site.common.handle.ArticleTypeHandler" javaType="cn.hassan.site.mvc.enums.ArticleTypeEnum"/>
+    </typeHandlers>
+	
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!--分页参数合理化  -->
+			<property name="reasonable" value="true"/>
+		</plugin>
+	</plugins>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${site.jdbc.driverClassName}"/>
+                <property name="url" value="${site.jdbc.url}"/>
+                <property name="username" value="${site.jdbc.username}"/>
+                <property name="password" value="${site.jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/article.xml"/>
+        <mapper resource="mapper/author.xml"/>
+    </mappers>
+
+</configuration>
+
