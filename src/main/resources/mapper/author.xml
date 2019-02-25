@@ -16,6 +16,7 @@
         <result column="age" property="age"/>
         <result column="sex" property="sex" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
         <result column="email" property="email"/>
+        <!-- ofType 指定映射到list集合中pojo的属性 -->
         <collection property="articles" ofType="Article" resultMap="articleResult"/>
     </resultMap>
 
